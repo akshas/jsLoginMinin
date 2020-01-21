@@ -12,7 +12,7 @@
 
 <body>
     <div id="sidebar">
-        <div class="mui--text-white mui--text-display1 mui--align-vertical">SAMPLE BLOG</div>
+        <div class="mui--text-white mui--text-display1 mui--align-vertical">ПОДКАСТ ВОПРОСЫ</div>
     </div>
     <div id="content" class="mui-container-fluid">
         <div class="mui-row">
@@ -21,7 +21,14 @@
                 <br>
                 <div class="mui--text-black-54 mui--text-body2">Задай вопрос</div>
                 <div class="mui-divider"></div>
-
+									<form class="mui-form">
+										<div class="mui-textfield mui-textfield--float-label">
+											<input type="text" id="question" minlength="10" maxlength="256" required>
+											<label for="question">Что хочешь спросить?</label>
+										</div>
+									
+										<button type="submit" id="submit" class="mui-btn mui-btn--raised mui-btn--primary">Отправить</button>
+									</form>
                 <br>
                 <br>
                 <div class="mui--text-black-54 mui--text-body2">Ваши вопросы</div>
