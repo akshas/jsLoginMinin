@@ -1,6 +1,6 @@
 export class Question {
   static create(question) {
-    return fetch("https://podcast-a290f.firebaseio.com/question.json", {
+    return fetch("https://podcast-a290f.firebaseio.com/questions.json", {
       method: "POST",
       body: JSON.stringify(question),
       headers: {
