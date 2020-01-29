@@ -5,8 +5,12 @@ import { Question } from "./questions";
 let form = document.querySelector("form");
 let input = form.querySelector("input");
 let submit = form.querySelector("#submit");
+let ul = document.querySelector(".list");
+const button = document.querySelector("#popup-btn");
 submit.disabled = true;
 
+button.addEventListener("click");
+window.addEventListener("load", Question.renderList);
 form.addEventListener("submit", check);
 input.addEventListener("input", function() {
   submit.disabled = !isValid(input.value);
@@ -26,3 +30,14 @@ function check(e) {
     });
   }
 }
+// function setUl() {
+//   const questions = Question.renderList();
+//   if (questions.length) {
+//     questions.forEach(item => {
+//       ul.innerHTML = `<li>${item.text}</li>`;
+//     });
+//   } else {
+//     ul.innerHTML = "Здесь будет список Ваших вопросов.";
+//   }
+// // }
+// setUl();
