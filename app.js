@@ -1,15 +1,16 @@
 import "./styles.css";
-import { isValid } from "./utils";
+import { isValid, createModal } from "./utils";
 import { Question } from "./questions";
+import { getAuthForm, loginWithEmailAndPassword } from "./getAuthForm";
 
-let form = document.querySelector("form");
+let form = document.querySelector("#question-form");
 let input = form.querySelector("input");
 let submit = form.querySelector("#submit");
 let ul = document.querySelector(".list");
 const button = document.querySelector("#popup-btn");
 submit.disabled = true;
 
-button.addEventListener("click");
+button.addEventListener("click", openModal);
 window.addEventListener("load", Question.renderList);
 form.addEventListener("submit", check);
 input.addEventListener("input", function() {
@@ -30,14 +31,21 @@ function check(e) {
     });
   }
 }
-// function setUl() {
-//   const questions = Question.renderList();
-//   if (questions.length) {
-//     questions.forEach(item => {
-//       ul.innerHTML = `<li>${item.text}</li>`;
-//     });
-//   } else {
-//     ul.innerHTML = "Здесь будет список Ваших вопросов.";
-//   }
-// // }
-// setUl();
+function authFromHandler(e) {
+  e.preventDefault();
+  let email = e.target.querySelector("#email").value;
+  let password = e.target.querySelector("#password").value;
+  loginWithEmailAndPassword(email, password)
+    .then(Question.fetch)
+    .then(renderModalAfterAuth);
+}
+function openModal() {
+  createModal("Авторизация", getAuthForm());
+  document
+    .querySelector("#auth")
+    .addEventListener("submit", authFromHandler, { once: true });
+}
+
+function renderModalAfterAuth(cont) {
+  console.log("content", cont);
+}

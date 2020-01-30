@@ -15,7 +15,16 @@ export class Question {
       .then(addToLocalStorage)
       .then(Question.renderList);
   } // end create
-
+  static fetch(token) {
+    if (!token) {
+      return Promise.resolve("<p class='error'>у Вас нет токена</p>");
+    }
+    fetch(
+      `https://questions-632dd.firebaseio.com/questions.json?token=${token}`
+    )
+      .then(response => response.json())
+      .then(data => console.log("Questions", data));
+  }
   static renderList() {
     const questions = getQuestionsFromLocalStorage();
     const html = questions.length
